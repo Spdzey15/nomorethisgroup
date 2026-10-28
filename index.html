@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Keystay — Booking Assurance for Hotels</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div id="loading" class="loading"><div class="tag-spinner"></div><p>Opening the ledger — loading 119,390 bookings…</p></div>
+
+<!-- ================= AUTH ================= -->
+<section id="auth" class="auth hidden">
+  <div class="auth-left">
+    <div class="brand"><span class="mark">K</span>Keystay</div>
+    <h1>Know which bookings will <em>walk</em> before the room goes empty.</h1>
+    <p class="lead">Booking assurance for hotels. Built on 119,390 real bookings from Kaggle's Hotel Booking Demand dataset, applied to an Indian hotel chain.</p>
+    <div class="tag-rack" aria-hidden="true">
+      <div class="keytag t1"><span class="hole"></span><div><small>Booking #48213 · City</small><b>212 days ahead · Groups</b></div><span class="risk hi">81%</span></div>
+      <div class="keytag t2"><span class="hole"></span><div><small>Booking #10577 · Resort</small><b>9 days ahead · Direct</b></div><span class="risk lo">6%</span></div>
+      <div class="keytag t3"><span class="hole"></span><div><small>Booking #77302 · City</small><b>64 days ahead · Online TA</b></div><span class="risk mid">43%</span></div>
+    </div>
+    <div class="auth-stats">
+      <div><b data-count="119390">0</b><span>bookings analysed</span></div>
+      <div><b data-count="37.0" data-suffix="%">0</b><span>were cancelled</span></div>
+      <div><b data-count="32">0</b><span>features per booking</span></div>
+    </div>
+  </div>
+
+  <div class="auth-right">
+    <div class="auth-card">
+      <form id="loginForm" class="auth-form" novalidate>
+        <h2>Welcome back</h2>
+        <p class="sub">Log in to your revenue desk.</p>
+        <label>Work email<input type="email" name="email" autocomplete="username" placeholder="you@hotel.com" required></label>
+        <label>Password<span class="pw"><input type="password" name="password" autocomplete="current-password" required><button type="button" class="eye">Show</button></span></label>
+        <p class="form-error" role="alert"></p>
+        <button class="btn primary block" type="submit">Log in</button>
+        <p class="switch">New to Keystay? <a href="#/signup">Create an account</a></p>
+      </form>
+
+      <form id="signupForm" class="auth-form" novalidate>
+        <h2>Create your account</h2>
+        <p class="sub">Set up your revenue desk in a few seconds.</p>
+        <div class="row-2">
+          <label>Full name<input type="text" name="name" autocomplete="name" required></label>
+          <label>Role<select name="role"><option>Revenue manager</option><option>Front office</option><option>General manager</option><option>Analyst</option><option>Student</option></select></label>
+        </div>
+        <label>Work email<input type="email" name="email" autocomplete="username" placeholder="you@hotel.com" required></label>
+        <label>Password<span class="pw"><input type="password" name="password" autocomplete="new-password" required><button type="button" class="eye">Show</button></span></label>
+        <div class="meter"><span></span><span></span><span></span><span></span></div>
+        <p class="hint">8+ characters with a letter and a number.</p>
+        <label>Confirm password<input type="password" name="confirm" autocomplete="new-password" required></label>
+        <p class="form-error" role="alert"></p>
+        <button class="btn primary block" type="submit">Create account</button>
+        <p class="switch">Already registered? <a href="#/login">Log in</a></p>
+      </form>
+      <p class="demo-note">Demo sign-in: accounts are stored only in this browser.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= APP ================= -->
+<div id="app" class="app hidden">
+  <aside class="side">
+    <div class="brand"><span class="mark">K</span>Keystay</div>
+    <nav>
+      <p class="nav-group">Analysis</p>
+      <a href="#/app/overview" data-nav="overview"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span>Overview</span></a>
+      <a href="#/app/drivers" data-nav="drivers"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20V11M11 20V5M17 20v-6M3 20h18"/></svg><span>Cancellation drivers</span></a>
+      <a href="#/app/channels" data-nav="channels"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="M7.4 8.2l3.4 7.4M16.6 8.2l-3.4 7.4"/></svg><span>Channel scorecard</span></a>
+      <a href="#/app/model" data-nav="model"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2"/></svg><span>Prediction model</span></a>
+      <p class="nav-group">Decisions</p>
+      <a href="#/app/scorer" data-nav="scorer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 16a8 8 0 1 1 16 0"/><path d="M12 16l4-5"/></svg><span>Booking risk scorer</span></a>
+      <a href="#/app/revenue" data-nav="revenue"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg><span>Revenue policy simulator</span></a>
+      <a href="#/app/playbook" data-nav="playbook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/></svg><span>Guest risk tiers</span></a>
+      <p class="nav-group">Add-on</p>
+      <a href="#/app/upload" data-nav="upload"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg><span>Upload &amp; score</span></a>
+    </nav>
+    <div class="me">
+      <span class="avatar" id="avatar"></span>
+      <span class="me-text"><b id="meName"></b><small id="meRole"></small></span>
+      <button class="btn ghost sm" id="logout">Log out</button>
+    </div>
+  </aside>
+
+  <header class="mobile-bar"><button id="menuBtn" aria-label="Open menu">☰</button><div class="brand"><span class="mark">K</span>Keystay</div></header>
+  <div class="scrim" id="scrim"></div>
+
+  <main>
+    <!-- OVERVIEW -->
+    <section class="view" data-view="overview">
+      <header class="head row"><div><p class="kicker">Overview</p><h1>Good <span id="greet"></span>, <span id="hi"></span>.</h1><p class="deck">Here is what cancellations cost these hotels, and where the losses come from.</p><p class="note">Years are shown as 2022–2024 for illustration.</p></div>
+        <div class="filters"><label>Hotel<select id="fHotel"><option value="all">Both hotels</option><option value="0">City Hotel</option><option value="1">Resort Hotel</option></select></label>
+        <label>Arrival year<select id="fYear"><option value="all">2022 – 2024</option><option>2022</option><option>2023</option><option>2024</option></select></label>
+        <label>€1 =<span class="fx"><input type="number" id="fx" min="1" step="1"> ₹</span></label></div></header>
+      <div class="hero-kpi card">
+        <div class="hero-main"><span class="kpi-label">Revenue lost to cancellations</span><b id="kLost" class="hero-num">—</b><span id="kLostSub" class="muted"></span></div>
+        <div class="hero-side" id="kSide"></div>
+      </div>
+      <div class="card"><div class="card-head"><h3>Bookings and cancellation rate by arrival month</h3><span class="legend"><i class="sw ink"></i>Kept <i class="sw clay"></i>Cancelled <i class="sw line"></i>Cancellation rate</span></div><div class="chart xl"><canvas id="cMonthly"></canvas></div></div>
+      <div class="insights" id="insights"></div>
+    </section>
+
+    <!-- DRIVERS -->
+    <section class="view" data-view="drivers">
+      <header class="head row"><div><p class="kicker">Exploratory analysis</p><h1>What drives a cancellation</h1><p class="deck">Cancellation rate by segment, calculated live. The filters on the Overview page apply here too.</p></div><span class="filter-pill" id="driverFilter"></span></header>
+      <div class="grid-2">
+        <div class="card"><h3>Lead time — how far ahead they booked</h3><div class="chart"><canvas id="cLead"></canvas></div><p class="note" id="nLead"></p></div>
+        <div class="card"><h3>Market segment</h3><div class="chart"><canvas id="cSeg"></canvas></div><p class="note" id="nSeg"></p></div>
+        <div class="card"><h3>Special requests made</h3><div class="chart"><canvas id="cReq"></canvas></div><p class="note" id="nReq"></p></div>
+        <div class="card"><h3>Deposit type</h3><div class="chart"><canvas id="cDep"></canvas></div><p class="note" id="nDep"></p></div>
+        <div class="card"><h3>Guest history</h3><div class="chart"><canvas id="cHist"></canvas></div><p class="note" id="nHist"></p></div>
+      </div>
+    </section>
+
+    <!-- CHANNELS -->
+    <section class="view" data-view="channels">
+      <header class="head row"><div><p class="kicker">Exploratory analysis</p><h1>Channel scorecard</h1><p class="deck">How each booking channel performs: volume, cancellations and the revenue it costs. The filters on the Overview page apply here too.</p></div><span class="filter-pill" id="chFilter"></span></header>
+      <div class="about"><span class="about-ic" aria-hidden="true">i</span><div><h3>What is this?</h3><p>A <b>booking channel</b> is the route a reservation comes through: an online travel agent, a tour operator, a group block, a corporate account, or the hotel's own website and phone line. This scorecard compares the channels side by side and gives each one a verdict.</p><p><b>Push</b> = under 20% cancel, so grow it. <b>Monitor</b> = 20–40%, so keep it with reminders. <b>Restrict</b> = 40% or more, so ask for deposits or limit the rooms it gets.</p><p class="about-line"><b>In one line:</b> This tells marketing which channels to push and which to restrict.</p></div></div>
+      <div class="kpi-strip" id="chKpis"></div>
+      <div class="card"><div class="card-head"><h3>Scorecard by channel</h3><span class="muted" id="chNote"></span></div><div class="table-wrap"><table id="chTable" class="data"></table></div></div>
+      <div class="card"><h3>Revenue lost by channel</h3><div class="chart"><canvas id="cChan"></canvas></div><p class="note" id="chTake"></p></div>
+    </section>
+
+    <!-- MODEL -->
+    <section class="view" data-view="model">
+      <header class="head"><p class="kicker">Model building &amp; validation</p><h1>Two-phase cancellation model</h1></header>
+      <div class="card"><h3>Results on the 2024 test set</h3><div class="table-wrap"><table id="metrics" class="metrics"></table></div></div>
+      <div class="card"><h3>What each phase looks at</h3><div class="grid-2 feats" id="featLists"></div></div>
+      <div class="grid-2">
+        <div class="card"><div class="card-head"><h3>Confusion matrix — Phase 2</h3><span class="pill" id="thrLbl"></span></div>
+          <input type="range" id="thr" min="0.1" max="0.9" step="0.05" aria-label="Decision threshold">
+          <div class="cm" id="cm"></div><p class="note" id="cmNote"></p></div>
+        <div class="about"><span class="about-ic" aria-hidden="true">i</span><div><h3>What is the threshold?</h3><p>The model gives every booking a <b>cancellation probability</b> between 0 and 1. The <b>threshold</b> is the cut-off: any booking at or above it is flagged as "will cancel".</p><p><b>Example:</b> at 0.50, a booking with 62% risk is flagged; one with 40% is not.</p><ul><li><b>Lower threshold:</b> catches more cancellations, but more loyal guests are flagged by mistake.</li><li><b>Higher threshold:</b> fewer false alarms, but more cancellations are missed.</li></ul><p class="about-line"><b>In one line:</b> The threshold is the risk level at which the hotel decides to act.</p></div></div>
+      </div>
+      <div class="card"><h3>What the model relies on</h3><div class="chart tall"><canvas id="cCoef"></canvas></div><p class="note">Bars to the right raise cancellation risk, bars to the left lower it.</p></div>
+    </section>
+
+    <!-- SCORER -->
+    <section class="view" data-view="scorer">
+      <header class="head"><p class="kicker">Live prediction</p><h1>Booking risk scorer</h1><p class="deck">Enter a new reservation. The Phase 2 model scores it instantly and recommends what the front desk should do.</p></header>
+      <div class="scorer">
+        <div class="card form" id="scoreForm"></div>
+        <div class="score-out">
+          <div class="keytag big" id="bigTag"><span class="hole"></span><div class="kt-body"><small id="ktMeta"></small><b id="ktPct">—</b><span>chance of cancellation</span></div><span class="kt-tier" id="ktTier"></span></div>
+          <div class="card action" id="ktAction"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REVENUE -->
+    <section class="view" data-view="revenue">
+      <header class="head"><p class="kicker">Decision layer</p><h1>Revenue policy simulator</h1><p class="deck">Ask high-risk bookings for a deposit or reconfirmation. Choose the risk threshold and recovery rate; the simulator replays the policy on all 2024 test bookings.</p></header>
+      <div class="sim">
+        <div class="card form">
+          <div class="slider"><label>Flag bookings with risk ≥ <output id="oThr"></output></label><input type="range" id="sThr" min="0.1" max="0.9" step="0.05"></div>
+          <label>Share of flagged cancellations recovered (%)<input type="number" id="sRec" min="0" max="100"></label>
+          <p class="note full">"Recovered" means the booking is kept, or the room is resold through a deposit, a reminder or an overbooking buffer.</p>
+        </div>
+        <div class="card sim-out three" id="simOut"></div>
+      </div>
+      <div class="card"><h3>Revenue protected at each risk threshold</h3><div class="chart"><canvas id="cSim"></canvas></div><p class="note" id="nSim"></p></div>
+    </section>
+
+    <!-- PLAYBOOK -->
+    <section class="view" data-view="playbook">
+      <header class="head"><p class="kicker">Risk segmentation</p><h1>Guest risk tiers</h1><p class="deck">Each 2024 booking is placed in a tier by the model. The actual cancellation rate in each tier shows the tiers are meaningful.</p></header>
+      <div class="tiers" id="tiers"></div>
+    </section>
+
+    <!-- UPLOAD -->
+    <section class="view" data-view="upload">
+      <header class="head"><p class="kicker">Add-on</p><h1>Upload &amp; score your bookings</h1>
+        <p class="deck">Upload a CSV of reservations in the Kaggle <code>hotel_bookings.csv</code> format. The Phase 2 model scores every row. If your file has an <code>is_canceled</code> column, the model is also checked against it.</p></header>
+      <label class="drop" id="drop">
+        <input type="file" id="file" accept=".csv,text/csv">
+        <span class="drop-icon" aria-hidden="true"><span class="hole"></span></span>
+        <b>Drop a CSV here, or click to choose a file</b>
+        <span class="muted">Any number of rows. Missing columns fall back to typical values. Nothing leaves your browser.</span>
+      </label>
+      <div class="actions center"><button class="btn ghost sm" id="sample" type="button">Try with 500 sample bookings</button><button class="btn ghost sm" id="template" type="button">Download CSV template</button></div>
+      <p class="note center" id="upMsg"></p>
+      <div id="upResults" class="hidden stack">
+        <div class="hero-kpi card">
+          <div class="hero-main"><span class="kpi-label">Revenue at risk in this file</span><b id="uRisk" class="hero-num">—</b><span id="uRiskSub" class="muted"></span></div>
+          <div class="hero-side" id="uSide"></div>
+        </div>
+        <div class="grid-2">
+          <div class="card"><h3>Risk tiers in your file</h3><div class="chart"><canvas id="cUpTier"></canvas></div></div>
+          <div class="card" id="upEval"></div>
+        </div>
+        <div class="card"><div class="card-head"><h3>Highest-risk bookings</h3><span class="muted" id="upCount"></span><span class="actions" style="margin:0"><button class="btn ghost sm" id="dlCopy" type="button">Copy CSV</button><button class="btn primary sm" id="dl" type="button">Download scored CSV</button></span></div>
+          <div class="table-wrap"><table id="upTable"></table></div></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div class="toast" id="toast" role="status"></div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1" integrity="sha384-jb8JQMbMoBUzgWatfe6COACi2ljcDdZQ2OxczGA3bGNeWe+6DChMTBJemed7ZnvJ" crossorigin="anonymous"></script>
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
